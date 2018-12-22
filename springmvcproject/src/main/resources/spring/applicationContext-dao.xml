@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+   <!--配置包扫描-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--配置sqlsessionfactory对象-->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--设置mybatis核心配置文件-->
+        <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"/>
+        <!--设置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--设置别名包扫描-->
+        <property name="typeAliasesPackage" value="com.itheima.pojo"/>
+    </bean>
+
+    <!--配置mapper包扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--设置包扫描-->
+
+        <property name="basePackage" value="com.itheima.mapper"/>
+
+    </bean>
+</beans>
