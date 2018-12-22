@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3-8</title>
+ <!--   引入jQuery -->
+	<script src="../js/jquery-3.3.1.js"></script>
+ <script type="text/javascript">
+	 /*
+	 *  设置  jQuery对象.attr("名称","值")
+	 *  获取  jQuery对象.attr("名称")
+	 *  删除  jQuery对象.removeAttr("名称")
+	 *
+	 *  jQuery1.6之后 prop
+	 *  设置  jQuery对象.prop("名称","值")
+	 *  获取  jQuery对象.prop("名称")
+	 *  删除  jQuery对象.removeProp("名称")
+	 *  如果试图将删除该属性，浏览器可能会产生错误。jQuery第一次分配undefined值的属性，而忽略了浏览器生成的任何错误
+	 *
+	 *  问题:两个的区别:  jQuery1.6之后如果使用attr这个方式有些属性获取不到.必须用prop
+	 * */
+
+
+
+
+ </script>
+</head>
+<body>
+    <input type="button" value="设置元素的属性'title'" onclick="fn1()"/>
+	<input type="button" value="获取元素的属性'title'" onclick="fn2()"/>
+	<input type="button" value="删除元素的属性'title'" onclick="fn3()"/>
+
+
+	<p title="选择你最喜欢的水果1111." >你最喜欢的水果是?</p>
+
+	<ul>
+	  <li title='苹果'>苹果</li>
+	  <li title='橘子'>橘子</li>
+	  <li title='菠萝'>菠萝</li>
+	</ul>
+	<pre>
+	     在JQuery中有很多类似的操作,获取节点的文本,获取节点的属性,
+	     $dm.html();   $dm.html("AAAA");
+	     $dm.attr("title");   $dm.attr("title","BBBBB");
+	</pre>
+</body>
+</html>
+
+ 

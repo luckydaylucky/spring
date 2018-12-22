@@ -1,0 +1,22 @@
+import java.util.Arrays;
+
+public class Practice21 {
+	public static void main(String[] args) {
+		String str = "goOd gooD stUdy dAy dAy up";
+//		第一步先把所有的字符都转换成小写
+		str = str.toLowerCase();
+		System.out.println(str);
+//		第二部切割字符串，用空格去切
+	
+//		把首字母，也就是索引 为0的字母给了ch，并转成大写
+		
+//			从索引为1的字符开始截取，到最后
+			
+//			把调整好的字符串，再放回数组
+		
+		}
+//		把数组的元素拼接成字符串
+		
+	}
+
+

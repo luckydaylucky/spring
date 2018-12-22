@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	 <script src="../js/jquery-3.3.1.js"></script>
+    <!--
+    show([speed,[easing],[fn]])显示元素方法
+
+    hide([speed,[easing],[fn]])隐藏元素方法
+
+    toggle([speed],[easing],[fn])切换元素方法，显示的使之隐藏，隐藏的使之显示
+    -->
+    <script>
+        function hidefn() {
+            $("#showDiv").hide(2000);
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+    <input type="button" value="点击按钮隐藏div" onclick="hideFn()">
+    <input type="button" value="点击按钮显示div" onclick="showFn()">
+    <input type="button" value="点击按钮切换div显示和隐藏" onclick="toggleFn()">
+
+    <div id="showDiv" style="width:300px;height:300px;background:red">
+        div显示和隐藏
+    </div>
+</body>
+</html>

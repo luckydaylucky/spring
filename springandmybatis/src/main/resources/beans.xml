@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       <!--加载配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--jdbc配置文件-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--配置mybatis-->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--配置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置mybatis核心配置文件-->
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"/>
+        <!--配置扫描包-->
+        <property name="typeAliasesPackage" value="com.itheima.pojo"/>
+
+    </bean>
+
+    <!--配置事务-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:advice id="interceptor" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+            <!--开启事务管理-->
+            <tx:method name="save*"/>
+            <tx:method name="update*"/>
+            <tx:method name="delete*"/>
+            <!--不使用事务管理-->
+            <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <!--配置切点表达式-->
+        <aop:pointcut id="pointcut" expression="execution(* com.itheima.service.*.*(..))"/>
+        <!--配置什么地方使用切点表达式-->
+        <aop:advisor advice-ref="interceptor" pointcut-ref="pointcut"/>
+    </aop:config>
+
+    <!--yuanshidao开发实例-->
+    <bean id="userDao" class="com.itheima.pojo.UserImpl">
+        <!--设置工厂-->
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--动态代理一种方式配置mapper代理对象-->
+    <!--<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--&lt;!&ndash;配置工厂对象&ndash;&gt;-->
+        <!--<property name="sqlSessionFactory" ref="sessionFactory"/>-->
+        <!--&lt;!&ndash;配置mapper接口代理&ndash;&gt;-->
+        <!--<property name="mapperInterface" value="com.itheima.mapper.UserMapper"/>-->
+    <!--</bean>-->
+    <!--配置mapper代理方式二-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--配置Mapper接口-->
+        <property name="basePackage" value="com.itheima.mapper"/>
+    </bean>
+</beans>

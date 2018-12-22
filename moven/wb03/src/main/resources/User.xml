@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<mapper namespace="test">
+    <select id="querryUserByid" parameterType="int" resultType="com.itheima.test.User">
+        select *from user where id = #{id};
+    </select>
+    <select id="querryUserByname" parameterType="String" resultType="com.itheima.test.User">
+        select * from user where username like #{username};
+    </select>
+
+    <select id="querryByname1" parameterType="String" resultType="com.itheima.test.User">
+        select * from user where username like '%${value}%';
+    </select>
+
+    <insert id="savename" parameterType="com.itheima.test.User">
+        insert into user (null,username,birthday,sex,adress)values (#{username},#{sex},#{birthday},#{address});
+    </insert>
+</mapper>

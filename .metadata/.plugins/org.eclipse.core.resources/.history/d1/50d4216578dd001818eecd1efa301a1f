@@ -1,0 +1,17 @@
+package com.test01;
+
+import java.util.Random;
+
+public class Test01 {
+	public static void main(String[] args) {
+		Random r = new Random();
+		int rr = r.nextInt(49)+81;
+		int[] arr = new int[rr];
+		
+		System.out.println(arr);
+		
+	}
+	
+	
+
+}

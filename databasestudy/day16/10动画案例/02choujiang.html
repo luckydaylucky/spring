@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <!--
+     小图
+    -->
+    <div style="background-color:red;border: dotted; height: 50px; width: 50px">
+        <img src="../img/01.jpg" id="smallImg" style="width: 50px; height: 50px;">
+    </div>
+    <!--
+        大图
+    -->
+    <div style="border: double ;width: 500px; height: 500px; position: absolute; left: 500px; top:10px">
+        <img id="bigImg" src="#" style="width: 500px; height: 500px">
+    </div>
+
+    <!--
+    开始按钮
+    -->
+    <input id="startBtn" type="button" style="width: 150px;height: 150px; font-size: 20px" value="开始" onclick="Imgstart()">
+    <input id="stopBtn" type="button" style="width: 150px;height: 150px; font-size: 20px" value="停止" onclick="ImgsStop()">
+
+</body>
+<script>
+
+    //1.准备一个数组
+    var imgs = [
+        "../img/01.jpg",
+        "../img/02.jpg",
+        "../img/03.jpg",
+        "../img/04.jpg",
+        "../img/05.jpg",
+        "../img/06.jpg",
+        "../img/07.jpg",
+        "../img/08.jpg",
+        "../img/09.jpg",
+        "../img/10.jpg",
+        "../img/11.jpg",
+        "../img/12.jpg",
+        "../img/13.jpg"]
+
+    //2.准备一个计数器
+        var count = 0;
+    //3.图片总数
+        var total= imgs.length;
+    //4.定时器
+     var timeId = null; //点击停止,清除定时任务.
+
+
+
+    //4.编写一个图片转动的方法
+    function chageImage(){
+        timeId = window.setInterval(function(){
+            var i = count%total;  //依靠他循环  0%13 = 0    1%13 = 1  2%13  .... 13%130  14%13=1
+            var img = imgs[i];  //获取第一张图片  第二张图
+            $("#smallImg").prop("src",img).show();
+            count++;
+
+        },10)
+    }
+
+
+    //5.编写一个开始的方法
+    function Imgstart(){
+        chageImage();
+        //设置按钮
+        $("#startBtn").prop("disabled",true);  //开始按钮不能点击
+        $("#stopBtn").prop("disabled",false);  //停止按钮可以点击
+    }
+
+
+    //6编写一个结束的方法
+    function ImgsStop(){
+        //清除定时任务
+        window.clearInterval(timeId);
+        //设置按钮
+        $("#startBtn").prop("disabled",false);
+        $("#stopBtn").prop("disabled",true);
+        //获取图片路径
+        var img = imgs[--count%total];
+
+        //给大图上先隐藏
+        $("#bigImg").prop("src",img).hide();
+        $("#bigImg").delay(300).show(300);
+
+    }
+
+    //7.页面初始化的方法
+
+
+</script>
+</html>

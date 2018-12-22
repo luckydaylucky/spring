@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	 <script src="../js/jquery-3.3.1.js"></script>
+
+    <script>
+        /**
+         * 第二个遍历方式
+         * jquery对象.each(function(index,element){});
+         */
+        $(function(){
+            $("li").each(function (index, element) {
+                // alert(index+" , "+element);
+                // alert(element.innerHTML);
+                alert($(this).html());
+                alert($(element).html())
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <ul id="city">
+        <li>北京</li>
+        <li>上海</li>
+        <li>天津</li>
+        <li>重庆</li>
+    </ul>
+</body>
+</html>

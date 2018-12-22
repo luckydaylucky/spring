@@ -1,0 +1,108 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>我的jquery表单校验页面</title>
+
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.js"></script>
+    <script>
+
+        /*
+        * 校验格式：
+         表单jQuery对象.validate({
+            rules:{
+                表单元素name值1:"规则1",
+                表单元素name值2:{
+                    规则名称：规则值
+                }
+            },
+            messages:{
+                表单元素name值1："提示1",
+                表单元素name值2：{
+                   规则名称
+                }
+            }
+         })
+
+         常见规则：requried:true/false;  true必填的 false非必填
+                  rangelength:[n,m] 填写字符的范围
+                  minlength: x  最小长度
+                  maxlength: y 最大长度
+                  equalTo: "#比较的id值" 判断是否相等
+                  range:[n,m] 输入内容的范围值
+                  email:true/false    true必填的 false非必填
+                  dateISO 日期格式为2011/11/11  2011-11-11
+
+
+        * */
+        // $(function () {
+        //     $("#myform").validate({
+        //         rules:{
+        //             username:"requried",
+        //             password:{
+        //                 requried:true,
+        //                 minLength:5,
+        //                 maxLength:8
+        //             }
+        //         },
+        //         messages:{
+        //             username:"用户名不能为空",
+        //             password:{
+        //                 requried:"密码不能为空",
+        //                 rangelength:"密码长度位5到8",
+        //                 minlength:"密码最短为5",
+        //                 maxlength:"密码最大不能超过8位"
+        //             }
+        //
+        //         }
+        //     })
+        // })
+        $(function(){
+            $("#myform").validate({
+                rules:{
+                    username:"required",
+                    password:{
+                        required:true,  //密码不能为空
+                        maxlength:18,
+                        minlength:6
+                    }
+                },
+                messages:{
+                    username:"用户名不能为空",
+                    password:{
+                        required:"密码不能为空",
+                        maxlength:"密码长度最大不能超过18",
+                        minlength:"密码长度最下不能小于6"
+                    }
+                }
+            })
+        })
+        // $(function () {
+        //     $("#myform").validator({
+        //         rules:{
+        //             username:"required",
+        //         },
+        //         messages:{
+        //
+        //         }
+        //     })
+        // })
+
+
+    </script>
+</head>
+<body>
+<p>员工信息录入</p>
+<form name="myform" id="myform" method="post" action="test.html">
+    用户名<input type="text" name="username"/><br/>
+    密码<input type="text" name="password"/><br/>
+    <input type="submit"/>
+</form>
+
+<script type="text/javascript">
+
+
+</script>
+
+</body>
+</html>

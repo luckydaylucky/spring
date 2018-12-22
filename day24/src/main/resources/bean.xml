@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--声明接口和实现类-->
+    <bean id="PerService" class="com.itheima.demo2.PserdonImpl"/>
+    <!--声明代理类-->
+    <bean id="pserSon" class="com.itheima.demo2.PersonServiceQq"/>
+    <!--配置前置aop-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="poincut1" expression="execution(* com.itheima.demo2.*.save*(..))"/>
+        <!--配置切面-->
+        <aop:aspect ref="PerService">
+            <aop:before method="save" pointcut-ref="poincut1"></aop:before>
+        </aop:aspect>
+    </aop:config>
+    
+    <!--配置后置aop-->
+    <bean id="PsersonService" class="com.itheima.demo2.PserdonImpl"/>
+    <!--配置代理类-->
+    <bean id="PsersonServiceQq" class="com.itheima.demo2.PersonServiceQq"/>
+    <!--配置aop-->
+    <aop:config>
+        <!--exessperon切点表达式-->
+        <!--配置切入点-->
+        <aop:pointcut id="ponitcut2" expression="execution(* com.itheima.demo2.PserdonImpl.delete*(..))"/>
+        <!--配置切面-->
+        <aop:aspect ref="PsersonServiceQq">
+            <aop:after method="afterMethod" pointcut-ref="ponitcut2"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--配置异常通知-->
+    <bean id="PersonService" class="com.itheima.demo2.PserdonImpl"/>
+    <!--配置代理通知-->
+    <bean id="PersonServiceQq" class="com.itheima.demo2.PersonServiceQq"/>
+
+    <!--配置aop-->
+    <aop:config>
+        <!--配置切点-->
+        <aop:pointcut id="ponite3" expression="execution(* com.itheima.demo2.*.execeptionPar*(..))"/>
+        <!--配置切面-->
+        <aop:aspect id="PersonServiceQq" ref="PsersonServiceQq">
+            <aop:after-throwing method="execeptionPar" pointcut-ref="ponite3"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

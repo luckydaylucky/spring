@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="userDao" class="com.itheima.dao.UserDaoImpl">
+            <property name="username" value="张三"></property>
+        </bean>
+        <bean id="bean1" class="com.itheima.dao.UserBean"></bean>
+    <bean id="userBean2" class="com.itheima.dao.UserBeanFactory" factory-method="userBeanTest"></bean>
+    <!--创建userbean3得实例工程-->
+    <bean id="bean3Factory" class="com.itheima.dao.Bean3Factory"/>
+    <bean id="userBean3" class="com.itheima.dao.UserBean3" factory-bean="bean3Factory" factory-method="userBeanTeat"/>
+    <bean id="user" class="com.itheima.demo2.User">
+        <property name="username" value="张三"/>
+        <property name="sex" value="1"/>
+        <property name="age" value="18"/>
+        <property name="birthday" ref="date"/>
+    </bean>
+    <bean id="date" class="java.util.Date"/>
+    <bean id="userDog" class="com.itheima.demo2.User">
+        <property name="username" value="李四"/>
+        <property name="sex" value="1"/>
+        <property name="age" value="18"/>
+        <property name="birthday" ref="date"/>
+        <property name="dog" ref="dog"/>
+    </bean>
+    <bean id="dog" class="com.itheima.demo2.Dog">
+        <property name="dogname" value="金毛"/>
+        <property name="sex" value="2"/>
+        <property name="color" value="金色"/>
+    </bean>
+
+    <bean id="connectProty" class="com.itheima.demo5.ConnectProty">
+        <!--list集合设值-->
+        <property name="list">
+            <list>
+                <value>张三</value>
+                <value type="int">18</value>
+                <ref bean="user"></ref>
+            </list>
+        </property>
+        <!--map集合设值-->
+        <property name="map">
+            <map>
+                <entry key="zhangsan" value="10"/>
+                <entry key="李四" value="20"/>
+                <entry key-ref="dog" value-ref="user"/>
+                <entry key-ref="user" value="王五"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="zhangsan">20</prop>
+                <prop key="lisi">10</prop>
+                <prop key="王五">天津</prop>
+                <prop key="中国">北京</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

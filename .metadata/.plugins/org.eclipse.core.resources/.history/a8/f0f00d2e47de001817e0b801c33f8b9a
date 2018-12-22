@@ -1,0 +1,33 @@
+package com.itheima;
+/*需求：给定数组元素{11,22,33,44,55}，
+遍历数组，并用方法改进，并调用方法，
+要求打印格式为[11,22,33,44,55]*/
+
+public class Test {
+	public static void main(String[] args) {
+//		定义数组
+		int[] arr = {11,22,33,44,55};
+		
+		String result = arryToString(arr);
+		System.out.println(result);
+
+	}
+	public static String arryToString(int[] arr){
+		String s = "";
+		s+='[';
+		
+		for(int i=0;i<arr.length; i++) {
+			if(i==arr.length-1) {
+				s+=arr[i];
+			}else {
+				s+= arr[i];
+				s+= ", ";
+			}
+			
+			
+		}
+		s+=']';
+		return s;
+	}
+
+}

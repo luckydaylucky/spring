@@ -1,0 +1,605 @@
+Index: springmvctwo/src/main/resources/com/itheima/mapper/itemMapper
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/resources/com/itheima/mapper/itemMapper	(date 1545190916345)
++++ springmvctwo/src/main/resources/com/itheima/mapper/itemMapper	(date 1545190916345)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8" ?>
++<!DOCTYPE mapper
++        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
++        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.itheima.mapper.itemMapper">
++    <select id="queryAll" resultType="item">
++        select * from item;
++    </select>
++</mapper>
+\ No newline at end of file
+Index: springmvctwo/src/main/java/com/itheima/service/ServiceQueryAll.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/java/com/itheima/service/ServiceQueryAll.java	(date 1545191123485)
++++ springmvctwo/src/main/java/com/itheima/service/ServiceQueryAll.java	(date 1545191123485)
+@@ -0,0 +1,14 @@
++package com.itheima.service;
++
++import com.itheima.pojo.Item;
++
++import java.util.List;
++
++/**
++ * @Author: MR.z
++ * @Date: 2018/12/19 11:41
++ * @Version 1.0
++ */
++public interface ServiceQueryAll {
++    public List<Item> queryAllServi();
++}
+Index: springmvctwo/src/main/java/com/itheima/pojo/Item.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/java/com/itheima/pojo/Item.java	(date 1545190645759)
++++ springmvctwo/src/main/java/com/itheima/pojo/Item.java	(date 1545190645759)
+@@ -0,0 +1,65 @@
++package com.itheima.pojo;
++
++import java.util.Date;
++
++/**
++ * @Author: MR.z
++ * @Date: 2018/12/19 11:35
++ * @Version 1.0
++ */
++public class Item {
++    private int id;
++    private String name;
++    private float price;
++    private String detail;
++    private String pic;
++    private Date createtime;
++
++    public int getId() {
++        return id;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public float getPrice() {
++        return price;
++    }
++
++    public void setPrice(float price) {
++        this.price = price;
++    }
++
++    public String getDetail() {
++        return detail;
++    }
++
++    public void setDetail(String detail) {
++        this.detail = detail;
++    }
++
++    public String getPic() {
++        return pic;
++    }
++
++    public void setPic(String pic) {
++        this.pic = pic;
++    }
++
++    public Date getCreatetime() {
++        return createtime;
++    }
++
++    public void setCreatetime(Date createtime) {
++        this.createtime = createtime;
++    }
++}
+Index: springmvctwo/src/main/java/com/itheima/mapper/ItemMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/java/com/itheima/mapper/ItemMapper.java	(date 1545191113910)
++++ springmvctwo/src/main/java/com/itheima/mapper/ItemMapper.java	(date 1545191113910)
+@@ -0,0 +1,16 @@
++package com.itheima.mapper;
++
++import com.itheima.pojo.Item;
++
++import java.util.List;
++
++/**
++ * @Author: MR.z
++ * @Date: 2018/12/19 11:38
++ * @Version 1.0
++ */
++public interface ItemMapper {
++
++//    查询全部数据
++    public List<Item> queryAll();
++}
+Index: springmvctwo/src/main/webapp/WEB-INF/jsp/itemEdit.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/webapp/WEB-INF/jsp/itemEdit.jsp	(date 1464862204000)
++++ springmvctwo/src/main/webapp/WEB-INF/jsp/itemEdit.jsp	(date 1464862204000)
+@@ -0,0 +1,57 @@
++<%@ page language="java" contentType="text/html; charset=UTF-8"
++    pageEncoding="UTF-8"%>
++<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
++<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
++<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
++<html>
++<head>
++<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
++<title>修改商品信息</title>
++
++</head>
++<body> 
++	<!-- 上传图片是需要指定属性 enctype="multipart/form-data" -->
++	<!-- <form id="itemForm" action="" method="post" enctype="multipart/form-data"> -->
++	<form id="itemForm"	action="${pageContext.request.contextPath }/updateItem.action" method="post">
++		<input type="hidden" name="id" value="${item.id }" /> 修改商品信息：
++		<table width="100%" border=1>
++			<tr>
++				<td>商品名称</td>
++				<td><input type="text" name="name" value="${item.name }" /></td>
++			</tr>
++			<tr>
++				<td>商品价格</td>
++				<td><input type="text" name="price" value="${item.price }" /></td>
++			</tr>
++			<%-- 
++			<tr>
++				<td>商品生产日期</td>
++				<td><input type="text" name="createtime"
++					value="<fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>" /></td>
++			</tr>
++			<tr>
++				<td>商品图片</td>
++				<td>
++					<c:if test="${item.pic !=null}">
++						<img src="/pic/${item.pic}" width=100 height=100/>
++						<br/>
++					</c:if>
++					<input type="file"  name="pictureFile"/> 
++				</td>
++			</tr>
++			 --%>
++			<tr>
++				<td>商品简介</td>
++				<td><textarea rows="3" cols="30" name="detail">${item.detail }</textarea>
++				</td>
++			</tr>
++			<tr>
++				<td colspan="2" align="center"><input type="submit" value="提交" />
++				</td>
++			</tr>
++		</table>
++
++	</form>
++</body>
++
++</html>
+\ No newline at end of file
+Index: springmvctwo/src/main/java/com/itheima/service/serviceimpl/ServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/java/com/itheima/service/serviceimpl/ServiceImpl.java	(date 1545192410230)
++++ springmvctwo/src/main/java/com/itheima/service/serviceimpl/ServiceImpl.java	(date 1545192410230)
+@@ -0,0 +1,19 @@
++package com.itheima.service.serviceimpl;
++
++import com.itheima.pojo.Item;
++import com.itheima.service.ServiceQueryAll;
++import org.springframework.stereotype.Service;
++
++import java.util.List;
++
++/**
++ * @Author: MR.z
++ * @Date: 2018/12/19 11:43
++ * @Version 1.0
++ */
++@Service
++public class ServiceImpl implements ServiceQueryAll {
++    public List<Item> queryAllServi() {
++        return null;
++    }
++}
+Index: springmvctwo/src/main/webapp/index.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/webapp/index.jsp	(date 1542617832000)
++++ springmvctwo/src/main/webapp/index.jsp	(date 1542617832000)
+@@ -0,0 +1,6 @@
++<%@ page contentType="text/html;charset=UTF-8" language="java" %>
++<html>
++<body>
++<h2>Hello World!</h2>
++</body>
++</html>
+Index: springmvctwo/src/main/webapp/WEB-INF/jsp/itemList.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/webapp/WEB-INF/jsp/itemList.jsp	(date 1464863064000)
++++ springmvctwo/src/main/webapp/WEB-INF/jsp/itemList.jsp	(date 1464863064000)
+@@ -0,0 +1,44 @@
++<%@ page language="java" contentType="text/html; charset=UTF-8"
++    pageEncoding="UTF-8"%>
++<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
++<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
++<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
++<html>
++<head>
++<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
++<title>查询商品列表</title>
++</head>
++<body> 
++<form action="${pageContext.request.contextPath }/queryItem.action" method="post">
++查询条件：
++<table width="100%" border=1>
++<tr>
++<td><input type="submit" value="查询"/></td>
++</tr>
++</table>
++商品列表：
++<table width="100%" border=1>
++<tr>
++	<td>商品名称</td>
++	<td>商品价格</td>
++	<td>生产日期</td>
++	<td>商品描述</td>
++	<td>操作</td>
++</tr>
++<c:forEach items="${itemList }" var="item">
++<tr>
++	<td>${item.name }</td>
++	<td>${item.price }</td>
++	<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
++	<td>${item.detail }</td>
++	
++	<td><a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}">修改</a></td>
++
++</tr>
++</c:forEach>
++
++</table>
++</form>
++</body>
++
++</html>
+\ No newline at end of file
+Index: springmvctwo/src/main/webapp/WEB-INF/web.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/webapp/WEB-INF/web.xml	(date 1545199020299)
++++ springmvctwo/src/main/webapp/WEB-INF/web.xml	(date 1545199020299)
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xmlns="http://java.sun.com/xml/ns/javaee"
++         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
++         id="WebApp_ID" version="2.5">
++        <display-name>springmvc-web</display-name>
++<!--配置spring监听器-->
++        <context-param>
++                <param-name>contextConfigLocation</param-name>
++                <param-value>classpath:spring/applicationContext-*.xml</param-value>
++        </context-param>
++
++        <!--配置springmvc控制器-->
++        <listener>
++                <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
++        </listener>
++
++        <!--配置springmvc前端控制器-->
++        <servlet>
++                <servlet-name>ssm</servlet-name>
++                <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
++                <!--配置springmvc启动需要加载的核心配置文件-->
++                <init-param>
++                        <param-name>contextConfigLocation</param-name>
++                        <param-value>classpath:spring/spring.xml</param-value>
++                </init-param>
++        </servlet>
++        <servlet-mapping>
++                <servlet-name>ssm</servlet-name>
++                <!--所有以action结尾的文件-->
++                <url-pattern>*.action</url-pattern>
++        </servlet-mapping>
++        <!--解决post请求乱码的问题-->
++        <filter>
++                <filter-name>encoding</filter-name>
++                <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
++                <init-param>
++                        <param-name>encoding</param-name>
++                        <param-value>UTF-8</param-value>
++                </init-param>
++        </filter>
++        <filter-mapping>
++                <filter-name>encoding</filter-name>
++                <url-pattern>/*</url-pattern>
++        </filter-mapping>
++</web-app>
+Index: springmvctwo/src/main/resources/spring/applicationContext-dao.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/resources/spring/applicationContext-dao.xml	(date 1545192153634)
++++ springmvctwo/src/main/resources/spring/applicationContext-dao.xml	(date 1545192153634)
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<beans xmlns="http://www.springframework.org/schema/beans"
++       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++       xmlns:context="http://www.springframework.org/schema/context"
++       xsi:schemaLocation="http://www.springframework.org/schema/beans
++       http://www.springframework.org/schema/beans/spring-beans.xsd
++       http://www.springframework.org/schema/context
++       http://www.springframework.org/schema/context/spring-context.xsd">
++    <!--配置加载properties文件-->
++    <context:property-placeholder location="classpath:jdbc.properties"/>
++    <!--配置数据源-->
++    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
++        <property name="driverClassName" value="${jdbc.driver}" />
++        <property name="url" value="${jdbc.url}"/>
++        <property name="username" value="${jdbc.username}" />
++        <property name="password" value="${jdbc.password}" />
++    </bean>
++    <!--配置sqlsessionfactory对象-->
++    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
++        <!--配置数据源-->
++        <property name="dataSource" ref="dataSource"/>
++        <!--配置mybatis核心配置文件-->
++        <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"/>
++        <!--配置别名-->
++        <property name="typeAliasesPackage" value="com.itheima.pojo"/>
++    </bean>
++    <!--mapper包扫描-->
++    <!--配置sqlseesionfactory，这个类自动从spring容器中通过类型匹配-->
++    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
++        <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
++        <property name="basePackage" value="com.itheima.mapper"/>
++    </bean>
++</beans>
+\ No newline at end of file
+Index: springmvctwo/src/main/resources/mybatis/sqlMapConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/resources/mybatis/sqlMapConfig.xml	(date 1545188471718)
++++ springmvctwo/src/main/resources/mybatis/sqlMapConfig.xml	(date 1545188471718)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE configuration
++        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
++        "http://mybatis.org/dtd/mybatis-3-config.dtd">
++<configuration>
++
++</configuration>
+\ No newline at end of file
+Index: springmvctwo/src/main/resources/spring/applicationContext-service.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/resources/spring/applicationContext-service.xml	(date 1545189364027)
++++ springmvctwo/src/main/resources/spring/applicationContext-service.xml	(date 1545189364027)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<beans xmlns="http://www.springframework.org/schema/beans"
++       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++       xmlns:context="http://www.springframework.org/schema/context"
++       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
++    <context:component-scan base-package="com.itheima.service"/>
++</beans>
+\ No newline at end of file
+Index: springmvctwo/src/main/resources/spring/spring.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/resources/spring/spring.xml	(date 1545190490387)
++++ springmvctwo/src/main/resources/spring/spring.xml	(date 1545190490387)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<beans xmlns="http://www.springframework.org/schema/beans"
++       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++       xmlns:context="http://www.springframework.org/schema/context"
++       xmlns:mvc="http://www.springframework.org/schema/mvc"
++       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
++    <!--配置包扫描-->
++    <context:component-scan base-package="com.itheima.controller"/>
++
++    <!--配置驱动-->
++    <mvc:annotation-driven/>
++
++    <!--配置视图解析器-->
++    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
++        <!--配置前缀-->
++        <property name="prefix" value="/WEB-INF/jsp"/>
++        <!--配置后缀-->
++        <property name="suffix" value=".jsp"/>
++    </bean>
++</beans>
+\ No newline at end of file
+Index: springmvctwo/src/main/resources/log4j.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- springmvctwo/src/main/resources/log4j.properties	(date 1545054451524)
++++ springmvctwo/src/main/resources/log4j.properties	(date 1545054451524)
+@@ -0,0 +1,6 @@
++# Global logging configuration
++log4j.rootLogger=DEBUG, stdout
++# Console output...
++log4j.appender.stdout=org.apache.log4j.ConsoleAppender
++log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
++log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
+Index: springmvctwo/src/main/resources/spring/applicationContext-trans.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/src/main/resources/spring/applicationContext-trans.xml	(date 1545190105945)
++++ springmvctwo/src/main/resources/spring/applicationContext-trans.xml	(date 1545190105945)
+@@ -0,0 +1,34 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<beans xmlns="http://www.springframework.org/schema/beans"
++       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
++       xmlns:aop="http://www.springframework.org/schema/aop"
++       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
++     <!--事务管理器-->
++      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
++          <!--数据源-->
++          <property name="dataSource" ref="dataSource"/>
++      </bean>
++
++    <!--通知-->
++    <tx:advice id="advicee" transaction-manager="transactionManager">
++        <tx:attributes>
++            <tx:method name="save*"/>
++            <tx:method name="update*"/>
++            <tx:method name="delete*"/>
++            <tx:method name="insert*"/>
++
++            <!--非事物管理-->
++            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
++            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
++            <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
++        </tx:attributes>
++    </tx:advice>
++
++    <!--切面-->
++    <aop:config>
++        <!--配置切点-->
++        <aop:pointcut id="pointcut1" expression="execution(* com.itheima.service.*.*(..))"/>
++        <!--使用切点-->
++        <aop:advisor advice-ref="advicee" pointcut-ref="pointcut1"/>
++    </aop:config>
++</beans>
+\ No newline at end of file
+Index: springmvctwo/src/main/resources/jdbc.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- springmvctwo/src/main/resources/jdbc.properties	(date 1545189001321)
++++ springmvctwo/src/main/resources/jdbc.properties	(date 1545189001321)
+@@ -0,0 +1,4 @@
++jdbc.driver:com.mysql.jdbc.Driver
++jdbc.url:jdbc:mysql://localhost:3306/spring?characterEncoding=utf-8
++jdbc.username:root
++jdbc.password:root
+\ No newline at end of file
+Index: springmvctwo/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- springmvctwo/pom.xml	(date 1545204901674)
++++ springmvctwo/pom.xml	(date 1545204901674)
+@@ -0,0 +1,72 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>com.itheima.demo</groupId>
++    <artifactId>springmvcone</artifactId>
++    <version>1.0-SNAPSHOT</version>
++
++    <packaging>war</packaging>
++    <dependencies>
++        <!--spring整合包-->
++        <dependency>
++            <groupId>org.springframework</groupId>
++            <artifactId>spring-webmvc</artifactId>
++            <version>4.2.6.RELEASE</version>
++        </dependency>
++        <!--spring注解-->
++        <dependency>
++            <groupId>org.springframework</groupId>
++            <artifactId>spring-aspects</artifactId>
++            <version>4.2.6.RELEASE</version>
++        </dependency>
++        <!--springjdbc-->
++        <dependency>
++            <groupId>org.springframework</groupId>
++            <artifactId>spring-jdbc</artifactId>
++            <version>4.2.6.RELEASE</version>
++        </dependency>
++        <dependency>
++            <groupId>mysql</groupId>
++            <artifactId>mysql-connector-java</artifactId>
++            <version>5.1.38</version>
++        </dependency>
++        <dependency>
++            <groupId>org.mybatis</groupId>
++            <artifactId>mybatis</artifactId>
++            <version>3.4.5</version>
++        </dependency>
++        <dependency>
++            <groupId>org.mybatis</groupId>
++            <artifactId>mybatis-spring</artifactId>
++            <version>1.3.0</version>
++        </dependency>
++        <!--javaweb包-->
++        <dependency>
++            <groupId>javax.servlet</groupId>
++            <artifactId>servlet-api</artifactId>
++            <version>2.5</version>
++        </dependency>
++        <dependency>
++            <groupId>javax.servlet</groupId>
++            <artifactId>jsp-api</artifactId>
++            <version>2.0</version>
++        </dependency>
++        <!--jstl-->
++        <dependency>
++            <groupId>jstl</groupId>
++            <artifactId>jstl</artifactId>
++            <version>1.2</version>
++        </dependency>
++        <!--日志包-->
++        <dependency>
++            <groupId>org.slf4j</groupId>
++            <artifactId>slf4j-log4j12</artifactId>
++            <version>1.7.25</version>
++        </dependency>
++    </dependencies>
++
++
++</project>
+\ No newline at end of file

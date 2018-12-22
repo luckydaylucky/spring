@@ -1,0 +1,13 @@
+package text01;
+
+import java.util.ArrayList;
+
+public class TEst2 {
+	public static void main(String[] args) {
+		
+	}
+	public static void method() {
+		ArrayList<>
+	}
+
+}

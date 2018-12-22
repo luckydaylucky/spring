@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class PersonTest {
+	public static void main(String[] args) {
+		ArrayList<Person> list = new ArrayList<>();
+		Person p1 = new Person("ÕÅÈı",23);
+		Person p2 = new Person("°¢ºì",24);
+		Person p3 = new Person("¶ş¹·",25);
+		
+		list.add(p1);
+		list.add(p2);
+		list.add(p3);
+		
+		for (Person person : list) {
+			System.out.println(person);
+		}
+	}
+
+}

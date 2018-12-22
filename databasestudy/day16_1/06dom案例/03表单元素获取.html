@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script>
+        //获取表单元素 ==> 如果不放在表单中,也可以获取到
+        function sub() {
+            var name = $("uid").val();
+            var $hobbies = $(":checkbox:checkbox");
+            var hobbyStr = "";
+            $hobbies.each(function (index, element) {
+                hobbyStr +=$(element).val();
+            });
+            var cityVal = $(":selected").val();
+            location.href="http://www.baidu.com?name="+name+"$hobby="+hobbyStr+"&city="+cityVal;
+        }
+    </script>
+</head>
+<body>
+    篮球<input type="checkbox" value="篮球">
+    足球<input type="checkbox" value="足球" checked>
+    排球<input type="checkbox" value="排球">
+    <br/>
+    <select>
+        <option value="北京">北京</option>
+        <option value="上海" selected>上海</option>
+    </select>
+    <br/>
+    <input type="button" value="按钮"/>
+</body>
+</html>

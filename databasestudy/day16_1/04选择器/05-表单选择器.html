@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>09-表单选择器.html</title>
+ <!--   引入jQuery -->
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="../js/assist.js"></script>
+ <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+ <script type="text/javascript">
+        /**
+         *  :input 可以选择所有的表单中的元素
+         *   input  button  select textarea  checkbox ..表单中的都能选中
+         *
+         *   如果表单选择器的时候:
+         *   $(":checked")  选择表单中被选中的
+         *
+         *   选择下拉中选中的值,下拉框选中了一个值,我要获取选中的那个值
+          */
+        $(function () {
+            // $("#btn1").click(function () {
+            //     $(":enabled").css("background-color","red");
+            // })
+
+            // $("#btn2").click(function () {
+            //     // $(":checked").css("background-color","red");
+            //     alert($(":checked").val());
+            // })
+            // $("#btn3").click(function () {
+            //     alert($(":selected").val());
+            // })
+        })
+
+ </script>
+</head>
+<body>
+ <input type="button" value="选取所有的表单子元素" id="btn1"/><br />
+ <input type="button" value="选择已经勾选中的" id="btn2"/><br />
+ <input type="button" value="获取下拉选中的值" id="btn3"/><br />
+	
+  <form id="form1" action="#">
+    <input type="button" value="Button"/><br/>
+    <input type="checkbox" name="c" value="ck0"/>1<input type="checkbox" name="c" value="ck1"/>2<input type="checkbox" name="c" value="ck2"/>3<br/>
+    <input type="file" /><br/>
+    <input type="hidden" /><br/>
+    <input type="image" src="1.jpg"/><br/>
+    <input type="password" /><br/>
+    <input type="radio" name="a"/>1<input type="radio" name="a"/>2<br/>
+    <input type="reset" /><br/>
+    <input type="submit" value="提交"/><br/>
+    <input type="text" /><br/>
+    <select>
+        <option value="sel01">sel01</option>
+        <option value="sel02">sel02</option>
+        <option value="sel03">sel03</option>
+    </select><br/>
+    <textarea rows="5" cols="20"></textarea><br/>
+    <button>Button</button><br/>
+  </form>
+ 
+  <div></div>
+</body>
+</html>

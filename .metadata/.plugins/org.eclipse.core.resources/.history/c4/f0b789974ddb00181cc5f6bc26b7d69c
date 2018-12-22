@@ -1,0 +1,13 @@
+
+public class Test02 {
+	public static void main(String[] args) {
+		String str = "heimaheimawoaiheima,buguanheimahaishibaima,zhaodaogongzuojiushihaoma"; 
+		int count = 0;
+		while (str.contains("heima")) {
+			str = str.replace("heima", "#");
+			count++;
+		}
+		System.out.println(count);
+	}
+
+}

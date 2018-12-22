@@ -1,0 +1,18 @@
+package com.itheima;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class InputStream {
+	public static void main(String[] args) throws IOException {
+		FileInputStream fil = new FileInputStream("a.txt");
+		
+		int by;
+		while ((by=fil.read())!=-1) {
+			System.out.println((char)by);
+			
+		}
+	}
+
+}

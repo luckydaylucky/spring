@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+
+    <script>
+        //通过点击注册发送ajax请求
+                /**
+                 * 1.获取参数
+                 * 2.发送ajax
+                 * 3.在回调函数中,判断 data == 1 就说明用户在数据库存在, 返回的是0则说明该用户在数据库不存在
+                 * 4.如果存在,就给span中写一个用户已经存在;  如果不存在,给span写一个用户可以注册
+                 */
+                $(function () {
+                    $("#uname").blur(function () {
+                        var uname = $("#uname").val();
+                        var parm = {"name":uname.trim()};
+
+                        $.post("/day17_project/ServletDemo",parm,function (data) {
+
+                            if(data==1){
+                                $("#msg").html("<font color='red'>用户名已经存在，不能使用<font/>");
+                            }else {
+                                $("#msg").html("<font color='green'>用户名可以使用<font/>");
+                            }
+                        })
+                    })
+                })
+
+    </script>
+
+</head>
+<body>
+用户名<input type="text" name="username" id="uname"/><span id="msg"></span><br/>
+    密码<input type="password" name="password" id="ipwd"/><br/>
+    <input type="button" value="注册" id="btn"/>
+</body>
+</html>

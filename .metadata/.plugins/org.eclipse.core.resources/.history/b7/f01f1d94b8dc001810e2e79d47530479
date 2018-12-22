@@ -1,0 +1,16 @@
+package com.itheima;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+public class Application {
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		byte[] b = "≤‘¿œ ¶".getBytes("UTF-8");
+		System.out.println(Arrays.toString(b));
+		
+		
+		String s = new String(b,"UTF-8");
+		System.out.println(s);
+	}
+
+}

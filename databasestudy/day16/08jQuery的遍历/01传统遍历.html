@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	 <script src="../js/jquery-3.3.1.js"></script>
+    <script>
+        //1.使用原始的方式遍历获取li中的文本值
+       /* for(var i=0;i<元素数组.length;i++){
+            元素数组[i];
+        }*/
+       $(function () {
+           var $li = $("li");
+           for (var i = 0;i<$li.length;i++){
+               alert($li[i].innerHTML);
+           }
+       })
+
+
+
+
+    </script>
+</head>
+<body>
+    <ul id="city">
+        <li>北京</li>
+        <li>上海</li>
+        <li>天津</li>
+        <li>重庆</li>
+    </ul>
+</body>
+</html>

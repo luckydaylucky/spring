@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script>
+        // $(function(){
+        //     //发送ajax请求
+        //     $("#btn").click(function(){
+        //         //发送ajax请求
+        //         $.get("/day17_test/ajax_Demo","username=tom",function(data){
+        //             alert(data);
+        //         },"text")
+        //     })
+        // })
+        $(function () {
+            var name = $("#username").val();
+            $("#btn").click(function () {
+                $.get("/day17/Servletdemo？username"+name,function (data) {
+                    alert(data);
+                })
+            })
+
+        })
+
+
+    </script>
+</head>
+<body>
+    <form action="../ajax_Demo" >
+
+        用户名 <input type="text" name="username" id="username"/><br/>
+        <input type="submit">
+        <input type="button" value="使用ajax发送请求" id="btn"/>
+    </form>
+</body>
+</html>

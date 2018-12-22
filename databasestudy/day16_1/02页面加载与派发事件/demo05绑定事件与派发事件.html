@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $("#btn1").click(function () {
+                alert("点我两次了");
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <!--
+        不用页面加载,直接写函数就行
+    -->
+    <input type="button" value="点我试试" id="btn1" onclick="fn()">
+    <!--
+        如果写在上面,一定要页面加载
+    -->
+    <input type="button" value="点我试试" id="btn2">
+</body>
+</html>

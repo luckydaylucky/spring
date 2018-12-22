@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script>
+        //获取表单元素 ==> 如果不放在表单中,也可以获取到
+        var name = $("#uid").val();
+        var $checkbox = $(":checkbox:checked");
+        var hobbyStr = "";
+        $checkbox.each(function (index, element) {
+            hobbyStr += $(element).val();
+        })
+        var cityval = $(":checked").val();
+
+
+
+
+    </script>
+</head>
+<body>
+<input type="text" value="张三" id="uid"><br/>
+篮球<input type="checkbox" value="篮球">
+足球<input type="checkbox" value="足球" checked>
+排球<input type="checkbox" value="排球">
+<br/>
+<select>
+    <option value="北京">北京</option>
+    <option value="上海" selected>上海</option>
+</select>
+<br/>
+<input type="button" value="按钮"  onclick="sub()"/>
+</body>
+</html>

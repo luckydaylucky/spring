@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<web-app>
+    <servlet>
+        <servlet-name>xxx</servlet-name>
+        <servlet-class>com.itheima.a.MyServelt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>xxx</servlet-name>
+        <url-pattern>/MyServelt</url-pattern>
+    </servlet-mapping>
+</web-app>

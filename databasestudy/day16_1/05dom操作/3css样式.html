@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3-9-1</title>
+<style type="text/css">
+.high{
+ font-weight:bold;   /* 粗体字 */
+ background:red;
+}
+.myClass{
+ font-style:italic;
+ color:blue;
+}
+</style>
+ <!--   引入jQuery -->
+	<script src="../js/jquery-3.3.1.js"></script>
+ <script type="text/javascript">
+      
+      //获取样式
+
+      //设置样式 原先的样式不存在
+
+
+      //追加样式 原先的样式还存在
+
+
+	  //删除全部样式
+
+
+	   //删除指定样式
+
+
+
+	  //重复切换样式 $dm.toggleClass("another");
+
+
+	  //判断元素p是否含有某样式 $dm.hasClass("another")
+
+
+
+  </script>
+</head>
+<body>
+    <input type="button" value="输出class类" onclick="fn1()"/>
+	<input type="button" value="设置class类" onclick="fn2()"/>
+	<input type="button" value="追加class类" onclick="fn3()"/>
+	<input type="button" value="删除全部class类" onclick="fn4()"/>
+	<input type="button" value="删除指定class类" onclick="fn5()"/>
+	<input type="button" value="重复切换class类" onclick="fn6()"/>
+	<input type="button" value="判断元素是否含有某个class类" onclick="fn7()"/>
+
+	<p class="myClass" title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+
+	<ul>
+	  <li title='苹果'>苹果</li>
+	  <li title='橘子'>橘子</li>
+	  <li title='菠萝'>菠萝</li>
+	</ul>
+	<pre>
+			JQuery提供了丰富的API让我们操作节点的样式:
+			  获取节点的样式,设置节点的样式,追加节点的样式,删除节点的样式(全部,指定)
+			  重复切换样式,判读节点是否包含指定的样式
+	</pre>
+	
+	
+</body>
+</html>
